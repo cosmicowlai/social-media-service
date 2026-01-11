@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: chatdb
+      POSTGRES_USER: chat
+      POSTGRES_PASSWORD: chat
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  chat-service-test:
+    build:
+      context: ./backend
+      dockerfile: chat-service/Dockerfile
+    environment:
+      CHAT_DATABASE_URL: postgresql://chat:chat@postgres:5432/chatdb
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    command: ["npm", "test"]
+    depends_on:
+      - postgres
+      - redis
+
+  message-worker:
+    build:
+      context: ./backend
+      dockerfile: message-worker/Dockerfile
+    environment:
+      CHAT_DATABASE_URL: postgresql://chat:chat@postgres:5432/chatdb
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - postgres
+      - redis
+
+  test-runner:
+    build:
+      context: ./tests
+      dockerfile: Dockerfile
+    environment:
+      GATEWAY_URL: http://gateway:3000
+    depends_on:
+      - gateway
+    networks:
+      - default
