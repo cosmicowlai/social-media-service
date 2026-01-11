@@ -1,0 +1,19 @@
+{
+  "name": "message-worker",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/src/worker.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/worker.js"
+  },
+  "dependencies": {
+    "bullmq": "^5.1.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/pg": "^8.11.2",
+    "typescript": "^5.3.3"
+  }
+}
