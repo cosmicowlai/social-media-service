@@ -2,10 +2,10 @@
   "name": "call-service",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/src/main.js",
+  "main": "dist/call-service/src/main.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/src/main.js"
+    "start": "node dist/call-service/src/main.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.7",
@@ -14,6 +14,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.19"
   }
 }

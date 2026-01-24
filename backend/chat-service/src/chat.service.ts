@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Conversation } from '../../../shared/src/models/conversation';
-import { Message } from '../../../shared/src/models/message';
+import { Conversation } from '../../shared/src/models/conversation';
+import { Message } from '../../shared/src/models/message';
 import { CreateConversationDto } from './dto/create-conversation.dto';
 import { SendMessageDto } from './dto/send-message.dto';
 import { ChatRepository, CHAT_REPOSITORY } from './repositories/chat.repository';

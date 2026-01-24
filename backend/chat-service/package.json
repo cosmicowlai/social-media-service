@@ -2,10 +2,10 @@
   "name": "chat-service",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/src/main.js",
+  "main": "dist/chat-service/src/main.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/src/main.js",
+    "start": "node dist/chat-service/src/main.js",
     "test": "node --test --require ts-node/register test/**/*.test.ts"
   },
   "dependencies": {
