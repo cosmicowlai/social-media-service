@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CallSession } from '../../../shared/src/models/call';
+import { CallSession } from '../../shared/src/models/call';
 import { StartCallDto } from './dto/start-call.dto';
 import { UpdateCallStatusDto } from './dto/update-call-status.dto';
 import { WebRtcSignalDto } from './dto/webrtc-signal.dto';
