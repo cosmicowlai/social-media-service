@@ -43,25 +43,16 @@ services:
       - postgres
       - redis
 
-  call-service:
-    build:
-      context: ./backend
-      dockerfile: call-service/Dockerfile
-    ports:
-      - '3002:3002'
-
   gateway:
     build:
       context: ./backend
       dockerfile: gateway/Dockerfile
     environment:
-      CHAT_SERVICE_URL: http://chat-service:3001
-      CALL_SERVICE_URL: http://call-service:3002
+      COMMUNICATION_SERVICE_URL: http://chat-service:3001
     ports:
       - '3000:3000'
     depends_on:
       - chat-service
-      - call-service
 
   frontend:
     build:

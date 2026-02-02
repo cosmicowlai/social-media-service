@@ -4,7 +4,10 @@ import { SendMessageDto } from '../dto/send-message.dto';
 
 @Injectable()
 export class ChatServiceClient {
-  private readonly baseUrl = process.env.CHAT_SERVICE_URL ?? 'http://localhost:3001';
+  private readonly baseUrl =
+    process.env.COMMUNICATION_SERVICE_URL ??
+    process.env.CHAT_SERVICE_URL ??
+    'http://localhost:3001';
 
   async createConversation(dto: CreateConversationDto) {
     return this.request(`${this.baseUrl}/conversations`, {
