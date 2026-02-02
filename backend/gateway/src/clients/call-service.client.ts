@@ -5,7 +5,11 @@ import { WebRtcSignalDto } from '../dto/webrtc-signal.dto';
 
 @Injectable()
 export class CallServiceClient {
-  private readonly baseUrl = process.env.CALL_SERVICE_URL ?? 'http://localhost:3002';
+  private readonly baseUrl =
+    process.env.COMMUNICATION_SERVICE_URL ??
+    process.env.CALL_SERVICE_URL ??
+    process.env.CHAT_SERVICE_URL ??
+    'http://localhost:3001';
 
   async startCall(dto: StartCallDto) {
     return this.request(`${this.baseUrl}/calls`, {

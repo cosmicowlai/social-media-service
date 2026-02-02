@@ -3,8 +3,8 @@
 This repository contains a basic microservices chat platform built with NestJS and a React front-end. It includes:
 
 - **Chat Service** (`backend/chat-service`) for 1:1 and group conversations with PostgreSQL persistence.
+- **Call APIs** (now housed in `backend/chat-service`) for audio/video sessions with WebRTC signaling.
 - **Message Worker** (`backend/message-worker`) for processing message workflow jobs.
-- **Call Service** (`backend/call-service`) for audio/video call sessions with WebRTC signaling endpoints.
 - **Gateway** (`backend/gateway`) as the API facade.
 - **Front-end** (`frontend`) for browsing chats and placing calls.
 
@@ -31,7 +31,7 @@ The chat service exposes Socket.IO for presence, typing, and message updates:
 - `typing:update` with `{ conversationId, userId, displayName, isTyping }`
 - `message:created`, `message:updated`, `message:deleted` events
 
-### Call Service
+### Call Service (within the Chat Service)
 - `POST /calls` – Start an audio or video call.
 - `PATCH /calls/:callId/status` – Update call status.
 - `GET /calls/conversation/:conversationId` – List calls for a conversation.
@@ -59,8 +59,7 @@ docker compose up --build
 Services will be available at:
 
 - Gateway: `http://localhost:3000`
-- Chat service: `http://localhost:3001`
-- Call service: `http://localhost:3002`
+- Chat + call service: `http://localhost:3001`
 - Front-end: `http://localhost:8080`
 - Postgres: `http://localhost:5432`
 - Redis: `http://localhost:6379`
